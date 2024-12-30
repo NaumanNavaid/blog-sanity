@@ -1,11 +1,12 @@
 import { defineField, defineType } from "sanity";
-
+import {DocumentTextIcon} from '@sanity/icons'
 
 
 const blog = defineType({
   name: 'Blog_post',
   title: "Blog",
   type: "document",
+  icon: DocumentTextIcon,
 
   fields: [
     defineField({
@@ -40,8 +41,8 @@ const blog = defineType({
     }),
     defineField({
       name: 'author',
-      title: "Author",
-      type: "string",
+      type: "reference",
+      to: { type: "author" }
 
 
 
@@ -56,7 +57,19 @@ const blog = defineType({
     }),
 
 
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      author: 'author.name',
+      media: 'mainImage',
+    },
+    prepare(selection) {
+      const {author} = selection
+      return {...selection, subtitle: author && `by ${author}`}
+    },
+  },
+
 
 
 
