@@ -45,20 +45,13 @@ interface Blog_post {
        }
  
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-   
-    const data: Blog_post = await getdata(params.slug);
-    console.log(data);
-
-
-
-
-    return (
-        <div>
-      
-            <h1>{data.title}</h1>
-        </div>
-    )
-}
-
-export default Page
+       export default async function Page(props: any) {
+        const { params } = props;
+        const data: Blog_post = await getdata(params.slug);
+        
+        return (
+            <div>
+                <h1>{data.title}</h1>
+            </div>
+        );
+    }
