@@ -1,23 +1,23 @@
 import { client } from '@/sanity/lib/client';
+import { PortableText } from 'next-sanity';
 import React from 'react';
-
+import Image from 'next/image';
 
 interface Author {
-    name: string;
-    currentslug: string;
-    image: { asset: { url: string; }; };
+  name: string;
+  currentslug: string;
+  image: { asset: { url: string; }; };
 }
 interface Blog_post {
-    [x: string]: any;
-    title: string;
-    image: { asset: { url: string; }; };
-    author: Author;
-    content: string;
-    currentslug: string
+  title: string;
+  image: { asset: { url: string; }; };
+  author: Author;
+  content: string;
+  currentslug: string
 }
- const getdata = async (slug: string) => {
+const getdata = async (slug: string) => {
 
-    const query = `*[_type== "Blog_post" && slug.current=="${slug}"]  
+  const query = `*[_type== "Blog_post" && slug.current=="${slug}"]  
     {
         title,
          image {
@@ -40,18 +40,35 @@ interface Blog_post {
      }
           }[0]`;
 
-          const data: Blog_post = await client.fetch(query);
-          return data
-       }
- 
+  const data: Blog_post = await client.fetch(query);
+  return data
+}
 
-       export default async function Page(props: any) {
-        const { params } = props;
-        const data: Blog_post = await getdata(params.slug);
-        
-        return (
-            <div>
-                <h1>{data.title}</h1>
-            </div>
-        );
-    }
+
+export default async function Page(props: any) {
+  const { params } = props;
+  const data: Blog_post = await getdata(params.slug);
+
+  return (
+    <div className='items-center flex flex-col justify-center'>
+
+
+
+      <h1>
+        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
+          {data.title}
+        </span>
+
+        <span className=' block text-center text-xl font-bold mt-3 '> By: {data.author.name}</span>
+
+      </h1>
+       <Image
+        src={data.image.asset.url}
+        alt={data.title}  
+        width={800}
+        height={800}
+        className='mt-10 rounded-lg'
+      />
+    </div>
+  );
+}

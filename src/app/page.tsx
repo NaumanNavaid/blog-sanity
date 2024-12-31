@@ -62,7 +62,8 @@ const page = async () => {
                 <div className='px-6 pb-2'>
                   <h2 className='font-bold'>{post.title}</h2>
 
-                  <div className='flex gap-2 '>
+                  <div className='flex flex-col gap-2 '>
+                    <div className='flex items-center gap-2'>
                     <div className="w-12 h-12 rounded-full overflow-hidden ">
                       <Image
                         src={post.author.image.asset.url}
@@ -70,9 +71,10 @@ const page = async () => {
                         width={48}
                         height={48}
                         className="w-12 h-12 rounded-full" />
-                    </div>
 
-                    <p className='mt-3'>{post.author.name}</p>
+                    </div>
+                    <p className='text-sm'> By: {post.author.name}</p>
+                    </div>
                     <Button asChild><a href={`/post/${post.currentslug}`}>Read More</a></Button>
                   </div>
                 </div>
