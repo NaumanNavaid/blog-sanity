@@ -2,7 +2,8 @@ import { client } from '@/sanity/lib/client';
 import { PortableText } from 'next-sanity';
 import React from 'react';
 import Image from 'next/image';
-
+ 
+export const revalidate= 10
 interface Author {
   name: string;
   currentslug: string;
