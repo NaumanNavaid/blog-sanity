@@ -3,6 +3,8 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button';
 
+export const revalidate= 10
+
 interface Author {
   name: string;
   currentslug: string;
