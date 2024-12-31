@@ -45,7 +45,7 @@ interface Blog_post {
        }
  
 
-const page = async ({ params }: { params: { slug: string } }) => {
+const Page = async ({ params }: { params: { slug: string } }) => {
    
     const data: Blog_post = await getdata(params.slug);
     console.log(data);
@@ -61,4 +61,4 @@ const page = async ({ params }: { params: { slug: string } }) => {
     )
 }
 
-export default page
+export default Page
