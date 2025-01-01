@@ -2,8 +2,8 @@ import { client } from '@/sanity/lib/client';
 import { PortableText } from 'next-sanity';
 import React from 'react';
 import Image from 'next/image';
- 
-export const revalidate= 10
+
+export const revalidate = 10
 interface Author {
   name: string;
   currentslug: string;
@@ -13,7 +13,7 @@ interface Blog_post {
   title: string;
   image: { asset: { url: string; }; };
   author: Author;
-  content: string;
+  content: any;
   currentslug: string
 }
 const getdata = async (slug: string) => {
@@ -51,7 +51,7 @@ export default async function Page(props: any) {
   const data: Blog_post = await getdata(params.slug);
 
   return (
-    <div className='items-center flex flex-col justify-center'>
+    <div className="max-w-2xl mx-auto px-4">
 
 
 
@@ -60,16 +60,19 @@ export default async function Page(props: any) {
           {data.title}
         </span>
 
-        <span className=' block text-center text-xl font-bold mt-3 '> By: {data.author.name}</span>
+        <span className=' block text-center text-lg font-bold mt-3 '> By: {data.author.name}</span>
 
       </h1>
-       <Image
+      <Image
         src={data.image.asset.url}
-        alt={data.title}  
+        alt={data.title}
         width={800}
         height={800}
         className='mt-10 rounded-lg'
       />
+      <div className="mt-16 prose ">
+        <PortableText value={data.content} />
+      </div>
     </div>
   );
 }
