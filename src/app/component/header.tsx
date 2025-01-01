@@ -28,12 +28,19 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button
-            aria-label="Toggle Menu"
-            className="text-gray-600 hover:text-blue-600 focus:outline-none"
-          >
-            ☰
+          
+
+
+
+          <button className="text-gray-600 hover:text-blue-600 focus:outline-none">
+          Button styled using tailwind
           </button>
+          
+
+
+
+          
+
         </div>
       </div>
     </header>

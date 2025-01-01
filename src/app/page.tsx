@@ -3,7 +3,7 @@ import React from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button';
 
-export const revalidate= 10
+export const revalidate = 10
 
 interface Author {
   name: string;
@@ -22,7 +22,7 @@ export interface Blog_post {
 
 
 const page = async () => {
-  const query = `*[_type== "Blog_post"]  | order(_createdAt asc){
+  const query = `*[_type== "Blog_post"]  | order(_createdAt desc){
       title,
        image {
          asset->{
@@ -66,16 +66,16 @@ const page = async () => {
 
                   <div className='flex flex-col gap-2 '>
                     <div className='flex items-center gap-2'>
-                    <div className="w-12 h-12 rounded-full overflow-hidden ">
-                      <Image
-                        src={post.author.image.asset.url}
-                        alt={post.author.name}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 rounded-full" />
+                      <div className="w-12 h-12 rounded-full overflow-hidden ">
+                        <Image
+                          src={post.author.image.asset.url}
+                          alt={post.author.name}
+                          width={48}
+                          height={48}
+                          className="w-12 h-12 rounded-full" />
 
-                    </div>
-                    <p className='text-sm'> By: {post.author.name}</p>
+                      </div>
+                      <p className='text-sm'> By: {post.author.name}</p>
                     </div>
                     <Button asChild><a href={`/post/${post.currentslug}`}>Read More</a></Button>
                   </div>

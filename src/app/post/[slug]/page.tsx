@@ -26,8 +26,16 @@ const getdata = async (slug: string) => {
              url
            }
          },
-          content,
-          "currentslug" : slug.current,
+  content[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        url
+      },
+      alt
+    }
+  } ,         "currentslug" : slug.current,
        
        author ->{
        name,
@@ -51,7 +59,7 @@ export default async function Page(props: any) {
   const data: Blog_post = await getdata(params.slug);
 
   return (
-    <div className="max-w-2xl mx-auto px-4">
+    <div className="max-w-4xl mx-auto px-4 shadow-lg">
 
 
 
@@ -66,12 +74,28 @@ export default async function Page(props: any) {
       <Image
         src={data.image.asset.url}
         alt={data.title}
-        width={800}
-        height={800}
+        width={896}
+        height={896
+          
+        }
         className='mt-10 rounded-lg'
       />
-      <div className="mt-16 prose ">
-        <PortableText value={data.content} />
+      <div className="mt-16 prose">
+        {data.content.map((block: any, index: number) => {
+          if (block._type === 'image') {
+            return (
+              <Image
+                key={index}
+                src={block.asset.url}
+                alt={block.alt || 'Image'}
+                width={800}
+                height={800}
+                className="mt-10 rounded-lg"
+              />
+            );
+          }
+          return <PortableText key={index} value={block} />;
+        })}
       </div>
     </div>
   );
