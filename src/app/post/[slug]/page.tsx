@@ -65,7 +65,7 @@ export default async function Page(props: any) {
 
 
       <h1>
-        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
+        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl pt-5">
           {data.title}
         </span>
 

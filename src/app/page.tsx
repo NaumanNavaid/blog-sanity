@@ -53,7 +53,7 @@ const page = async () => {
     <div className="max-w-5xl mx-auto py-10 px-4">
       <div>
         <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
-        <div className='grid grid-cols-2 gap-10'>
+        <div className='grid md:grid-cols-2 gap-10'>
 
           {data.map((post: Blog_post, index) =>
             <div key={index} className="block  border rounded-lg hover:shadow-lg transition-shadow ">
