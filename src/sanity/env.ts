@@ -11,10 +11,11 @@ export const projectId = assertValue(
   'Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID'
 )
 
-function assertValue<T>(v: T | undefined, errorMessage: string): T {
-  if (v === undefined) {
+
+function assertValue<T>(value: T, errorMessage: string): T {
+  if (value) {
+    return value
+  } else {
     throw new Error(errorMessage)
   }
-
-  return v
 }

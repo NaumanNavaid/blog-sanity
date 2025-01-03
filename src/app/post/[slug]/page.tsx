@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client';
 import { PortableText } from 'next-sanity';
 import React from 'react';
 import Image from 'next/image';
-
+import Comment from '@/app/component/Comment';
 export const revalidate = 10
 interface Author {
   name: string;
@@ -59,7 +59,8 @@ export default async function Page(props: any) {
   const data: Blog_post = await getdata(params.slug);
 
   return (
-    <div className="max-w-4xl mx-auto px-4 shadow-lg">
+    <div>
+    <div className="max-w-4xl mx-auto px-4 shadow-lg mb-10 rounded-lg">
 
 
 
@@ -75,12 +76,12 @@ export default async function Page(props: any) {
         src={data.image.asset.url}
         alt={data.title}
         width={896}
-        height={896
-          
-        }
+        height={896}
+
+
         className='mt-10 rounded-lg'
       />
-      <div className="mt-16 prose">
+      <div className="mt-16 prose pb-10 ">
         {data.content.map((block: any, index: number) => {
           if (block._type === 'image') {
             return (
@@ -97,6 +98,9 @@ export default async function Page(props: any) {
           return <PortableText key={index} value={block} />;
         })}
       </div>
+    </div>
+    <Comment/>
+
     </div>
   );
 }
