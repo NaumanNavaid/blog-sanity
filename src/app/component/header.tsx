@@ -28,18 +28,13 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          
+
+          <Link href="/" className="text-gray-600 hover:text-blue-600">
+            Home
+          </Link>
 
 
 
-          <button className="text-gray-600 hover:text-blue-600 focus:outline-none">
-          Button styled using tailwind
-          </button>
-          
-
-
-
-          
 
         </div>
       </div>
