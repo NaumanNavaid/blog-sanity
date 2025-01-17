@@ -10,7 +10,6 @@ export default function Header() {
           Dailyblog
         </Link>
 
-        {/* Navigation Links */}
         <nav className="hidden md:flex space-x-6">
           <Link href="/" className="text-gray-600 hover:text-blue-600">
             Home
@@ -25,9 +24,7 @@ export default function Header() {
             Contact
           </Link>
         </nav>
-
-        {/* Mobile Menu Button */}
-      
+    
       </div>
     </header>
   );
